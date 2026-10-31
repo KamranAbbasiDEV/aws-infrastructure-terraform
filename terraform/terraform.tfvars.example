@@ -1,0 +1,8 @@
+# Copy to terraform.tfvars only when you are ready to deploy.
+aws_region   = "us-east-1"
+project_name = "cloudops-aws-web-lab"
+instance_type = "t3.micro"
+
+# For a less exposed demo, replace with your public IPv4 address in CIDR notation:
+# allowed_http_cidrs = ["203.0.113.10/32"]
+allowed_http_cidrs = ["0.0.0.0/0"]
