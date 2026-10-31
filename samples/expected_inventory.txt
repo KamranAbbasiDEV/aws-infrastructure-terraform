@@ -1,0 +1,5 @@
+Sample component inventory (not actual deployed resources)
+  1 VPC / 1 public subnet / 1 internet gateway / 1 public route table
+  1 security group (inbound TCP 80, zero inbound SSH rules)
+  1 EC2 Amazon Linux 2023 instance (SSM role, encrypted 8 GiB EBS, IMDSv2)
+  2 CloudWatch alarms (no notification actions)
