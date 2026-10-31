@@ -1,0 +1,25 @@
+# Local Terraform provider installation and state (may contain sensitive data)
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+*.tfplan
+tfplan
+crash.log
+crash.*.log
+.terraform.tfstate.lock.info
+*.tfbackend
+
+# Local environment and secrets
+.env
+.env.*
+*.pem
+*.key
+.aws/
+__pycache__/
+*.pyc
+.pytest_cache/
+.vscode/
+.idea/
+.DS_Store
