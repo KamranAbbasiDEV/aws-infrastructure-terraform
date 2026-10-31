@@ -1,0 +1,39 @@
+name: Terraform and Offline Checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.10.5"
+      - name: Terraform formatting
+        run: terraform fmt -check -recursive
+        working-directory: terraform
+      - name: Terraform initialize without a backend
+        run: terraform init -backend=false -input=false
+        working-directory: terraform
+      - name: Terraform validate (does not provision anything)
+        run: terraform validate -no-color
+        working-directory: terraform
+
+  offline-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run offline source safety checks
+        run: python -m unittest discover -s tests -v
+      - name: Generate inventory
+        run: python scripts/architecture.py
